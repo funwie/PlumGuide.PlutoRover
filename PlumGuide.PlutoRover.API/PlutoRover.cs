@@ -4,8 +4,8 @@ namespace PlumGuide.PlutoRover.API
 {
     public class PlutoRover : IRover
     {
-        public Position Position { get; private set; }
-        public ICardinal Cardinal { get; private set; }
+        public Position Position { get; }
+        public ICardinal Cardinal { get; }
 
         public PlutoRover(Position position, ICardinal cardinal)
         {
@@ -13,50 +13,34 @@ namespace PlumGuide.PlutoRover.API
             Cardinal = cardinal;
         }
 
-        public void Forward()
+        public IRover Forward(int toPoint)
         {
-            if (Cardinal.Direction == CardinalDirection.East || Cardinal.Direction == CardinalDirection.West)
-            {
-                MoveHorizontally(1);
-            }
-            else
-            {
-                MoveVertically(1);
-            }
+            return RoverIsMovingHorizontally ? MoveHorizontally(toPoint) : MoveVertically(toPoint);
         }
 
-        public void Backward()
+        public IRover Backward(int toPoint)
         {
-            if (Cardinal.Direction == CardinalDirection.North || Cardinal.Direction == CardinalDirection.South)
-            {
-                MoveVertically(-1);
-            }
-            else
-            {
-                MoveHorizontally(-1);
-            }
+            return RoverIsMovingHorizontally ? MoveHorizontally(toPoint) : MoveVertically(toPoint);
         }
 
-        public void TurnLeft()
+        public IRover Turn(ICardinal cardinal)
         {
-            Cardinal = Cardinal.Left;
+            return new PlutoRover(Position, cardinal);
         }
 
-        public void TurnRight()
+        private IRover MoveVertically(int nextYPoint)
         {
-            Cardinal = Cardinal.Right;
+            var newPosition = new Position(Position.XCoordinate, nextYPoint);
+            return new PlutoRover(newPosition, Cardinal);
         }
 
-        private void MoveVertically(int distance)
+        private IRover MoveHorizontally(int nextXPoint)
         {
-            var newYPosition = Position.YCoordinate + distance;
-            Position = new Position(Position.XCoordinate, newYPosition);
+            var newPosition = new Position(nextXPoint, Position.YCoordinate);
+            return new PlutoRover(newPosition, Cardinal);
         }
 
-        private void MoveHorizontally(int distance)
-        {
-            var newXPosition = Position.XCoordinate + distance;
-            Position = new Position(newXPosition, Position.YCoordinate);
-        }
+        private bool RoverIsMovingHorizontally => Cardinal.Direction == CardinalDirection.East || 
+                                                  Cardinal.Direction == CardinalDirection.West;
     }
 }

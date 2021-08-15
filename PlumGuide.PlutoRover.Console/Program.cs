@@ -9,7 +9,7 @@ namespace PlumGuide.PlutoRover.Console
         {
             var coordinate = new Position(0, 0);
             var plutoRover = new API.PlutoRover(coordinate, new CardinalNorth());
-            var controller = new RoverController(plutoRover);
+            var controller = new RoverController(plutoRover, new Grid());
 
             controller.ExecuteCommand("FFRFF");
 

@@ -21,17 +21,22 @@ namespace PlumGuide.PlutoRover.API.Commands
 
         public ICommand GetCommand(char commandLetter)
         {
-            return _roverCommands[commandLetter];
+            if (_roverCommands.TryGetValue(commandLetter, out var command))
+            {
+                return command;
+            }
+
+            throw new UnsupportedCommandException($"{commandLetter} is not supported by the rover");
         }
 
         private void InitialiseRoverCommands()
         {
             _roverCommands = new Dictionary<char, ICommand>
             {
-                {MoveForward, new MoveForwardCommand()},
-                {MoveBackward, new MoveBackwardCommand()},
-                {TurnLeft, new TurnLeftCommand()},
-                {TurnRight, new TurnRightCommand()}
+                {MoveForward, new MoveForwardCommand(_rover)},
+                {MoveBackward, new MoveBackwardCommand(_rover)},
+                {TurnLeft, new TurnLeftCommand(_rover)},
+                {TurnRight, new TurnRightCommand(_rover)}
             };
         }
     }

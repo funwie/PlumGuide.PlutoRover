@@ -2,6 +2,7 @@
 {
     public interface ICommand
     {
-        void Execute(IRover rover);
+        bool CanExecute(Grid planetGrid);
+        IRover Execute(Grid planetGrid);
     }
 }

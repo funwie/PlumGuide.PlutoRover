@@ -6,9 +6,8 @@ namespace PlumGuide.PlutoRover.API
     {
         Position Position { get; }
         ICardinal Cardinal { get; }
-        void Forward();
-        void Backward();
-        void TurnLeft();
-        void TurnRight();
+        IRover Forward(int toPoint);
+        IRover Backward(int toPoint);
+        IRover Turn(ICardinal cardinal);
     }
 }
