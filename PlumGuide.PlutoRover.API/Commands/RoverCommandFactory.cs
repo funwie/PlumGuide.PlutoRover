@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlumGuide.PlutoRover.API.Exceptions;
 
 namespace PlumGuide.PlutoRover.API.Commands
 {
@@ -33,10 +34,10 @@ namespace PlumGuide.PlutoRover.API.Commands
         {
             _roverCommands = new Dictionary<char, ICommand>
             {
-                {MoveForward, new MoveForwardCommand(_rover)},
-                {MoveBackward, new MoveBackwardCommand(_rover)},
-                {TurnLeft, new TurnLeftCommand(_rover)},
-                {TurnRight, new TurnRightCommand(_rover)}
+                {MoveForward, new MoveForwardCommand()},
+                {MoveBackward, new MoveBackwardCommand()},
+                {TurnLeft, new TurnLeftCommand()},
+                {TurnRight, new TurnRightCommand()}
             };
         }
     }

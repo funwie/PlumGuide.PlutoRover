@@ -4,21 +4,17 @@ namespace PlumGuide.PlutoRover.API.Commands
 {
     public class TurnLeftCommand : ICommand
     {
-        private readonly IRover _rover;
-
-        public TurnLeftCommand(IRover rover)
-        {
-            _rover = rover ?? throw new ArgumentNullException(nameof(rover));
-        }
-
-        public bool CanExecute(Grid planetGrid)
+        public bool CanExecute(Grid planetGrid, IRover rover)
         {
             return GridIsAvailable(planetGrid);
         }
 
-        public IRover Execute(Grid planetGrid)
+        public IRover Execute(Grid planetGrid, IRover rover)
         {
-           return _rover.Turn(_rover.Cardinal.Left);
+            if (planetGrid is null) throw new ArgumentNullException(nameof(planetGrid));
+            if (rover is null) throw new ArgumentNullException(nameof(rover));
+
+            return rover.Turn(rover.Cardinal.Left);
         }
 
         private bool GridIsAvailable(Grid planetGrid)

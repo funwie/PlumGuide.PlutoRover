@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace PlumGuide.PlutoRover.API
+namespace PlumGuide.PlutoRover.API.Exceptions
 {
     [Serializable]
     public class UnsupportedCommandException : Exception

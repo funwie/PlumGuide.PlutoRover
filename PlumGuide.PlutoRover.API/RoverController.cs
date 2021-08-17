@@ -22,12 +22,12 @@ namespace PlumGuide.PlutoRover.API
             foreach (var commandLetter in fullCommand)
             {
                 var command = _commandFactory.GetCommand(commandLetter);
-                if (command.CanExecute(PlanetGrid) is false)
+                if (command.CanExecute(PlanetGrid, Rover) is false)
                 {
                     throw new InvalidOperationException($"Unable to execute command {command.GetType().Name} with letter {commandLetter}");
                 }
 
-                Rover = command.Execute(PlanetGrid);
+                Rover = command.Execute(PlanetGrid, Rover);
             }
         }
     }

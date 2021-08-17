@@ -2,7 +2,7 @@
 {
     public interface ICommand
     {
-        bool CanExecute(Grid planetGrid);
-        IRover Execute(Grid planetGrid);
+        bool CanExecute(Grid planetGrid, IRover rover);
+        IRover Execute(Grid planetGrid, IRover rover);
     }
 }

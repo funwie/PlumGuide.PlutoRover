@@ -35,10 +35,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.North;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Forward(1);
+            var expectedRover = sut.Forward(1);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -54,10 +54,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.South;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Forward(1);
+            var expectedRover = sut.Forward(1);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -73,10 +73,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.East;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Forward(1);
+            var expectedRover = sut.Forward(1);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -92,10 +92,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.West;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Forward(1);
+            var expectedRover = sut.Forward(1);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -111,10 +111,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.North;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Backward(0);
+            var expectedRover = sut.Backward(0);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -130,10 +130,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.South;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Backward(0);
+            var expectedRover = sut.Backward(0);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -149,10 +149,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.East;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Backward(0);
+            var expectedRover = sut.Backward(0);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -168,10 +168,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.West;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Backward(0);
+            var expectedRover = sut.Backward(0);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -187,10 +187,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.East;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Right);
+            var expectedRover = sut.Turn(cardinal.Right);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -206,10 +206,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.South;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Right);
+            var expectedRover = sut.Turn(cardinal.Right);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -225,10 +225,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.West;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Right);
+            var expectedRover = sut.Turn(cardinal.Right);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -244,10 +244,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.North;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Right);
+            var expectedRover = sut.Turn(cardinal.Right);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -263,10 +263,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.West;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Left);
+            var expectedRover = sut.Turn(cardinal.Left);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -282,10 +282,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.South;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Left);
+            var expectedRover = sut.Turn(cardinal.Left);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -301,10 +301,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.East;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Left);
+            var expectedRover = sut.Turn(cardinal.Left);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -320,10 +320,10 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.North;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Turn(cardinal.Left);
+            var expectedRover = sut.Turn(cardinal.Left);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
 
         [Test]
@@ -339,12 +339,12 @@ namespace PlumGuide.PlutoRover.API.Tests
             var expectedDirection = CardinalDirection.East;
 
             var sut = new PlutoRover(position, cardinal);
-            sut.Forward(2);
-            sut.Turn(cardinal.Right);
-            sut.Forward(2);
+            var forwardRover = sut.Forward(2);
+            var turnRightRover = forwardRover.Turn(cardinal.Right);
+            var expectedRover = turnRightRover.Forward(2);
 
-            sut.Cardinal.Direction.Should().Be(expectedDirection);
-            sut.Position.Should().BeEquivalentTo(expectedPosition);
+            expectedRover.Cardinal.Direction.Should().Be(expectedDirection);
+            expectedRover.Position.Should().BeEquivalentTo(expectedPosition);
         }
     }
 }

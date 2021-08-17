@@ -5,33 +5,28 @@ namespace PlumGuide.PlutoRover.API.Commands
 {
     public class MoveBackwardCommand : ICommand
     {
-        private readonly IRover _rover;
-
-        public MoveBackwardCommand(IRover rover)
+        public bool CanExecute(Grid planetGrid, IRover rover)
         {
-            _rover = rover ?? throw new ArgumentNullException(nameof(rover));
+            var nextPoint = GetNextPoint(planetGrid, rover);
+            return GridIsAvailable(planetGrid) && WillRoverCollideWithObstacle(planetGrid, nextPoint, rover);
         }
 
-        public bool CanExecute(Grid planetGrid)
+        public IRover Execute(Grid planetGrid, IRover rover)
         {
-            var nextPoint = GetNextPoint(planetGrid);
-            return GridIsAvailable(planetGrid) && WillRoverCollideWithObstacle(planetGrid, nextPoint);
+            if (planetGrid is null) throw new ArgumentNullException(nameof(planetGrid));
+            if (rover is null) throw new ArgumentNullException(nameof(rover));
+
+            var nextPoint = GetNextPoint(planetGrid, rover);
+            return rover.Backward(nextPoint);
         }
 
-        public IRover Execute(Grid planetGrid)
-        {
-
-            var nextPoint = GetNextPoint(planetGrid);
-            return _rover.Backward(nextPoint);
-        }
-
-        private int GetNextPoint(Grid planetGrid)
+        private int GetNextPoint(Grid planetGrid, IRover rover)
         {
             var maxDistanceToMove = 1;
-            var roverXPosition = _rover.Position.XCoordinate;
-            var roverYPosition = _rover.Position.YCoordinate;
+            var roverXPosition = rover.Position.XCoordinate;
+            var roverYPosition = rover.Position.YCoordinate;
 
-            var nextPoint = _rover.Cardinal.Direction switch
+            var nextPoint = rover.Cardinal.Direction switch
             {
                 CardinalDirection.North => roverYPosition - maxDistanceToMove,
                 CardinalDirection.South => roverYPosition + maxDistanceToMove,
@@ -40,12 +35,12 @@ namespace PlumGuide.PlutoRover.API.Commands
                 _ => 0
             };
 
-            return GetNextPointWrappedAroundGridEdge(nextPoint, planetGrid);
+            return GetNextPointWrappedAroundGridEdge(nextPoint, planetGrid, rover);
         }
 
-        private int GetNextPointWrappedAroundGridEdge(int nextPoint, Grid planetGrid)
+        private int GetNextPointWrappedAroundGridEdge(int nextPoint, Grid planetGrid, IRover rover)
         {
-            if (RoverIsMovingHorizontally)
+            if (RoverIsMovingHorizontally(rover))
             {
                 if (nextPoint == planetGrid.Width)
                 {
@@ -77,11 +72,11 @@ namespace PlumGuide.PlutoRover.API.Commands
             return planetGrid != null && (planetGrid.Width > 0 || planetGrid.Height > 0);
         }
 
-        private bool WillRoverCollideWithObstacle(Grid planetGrid, int nextPoint)
+        private bool WillRoverCollideWithObstacle(Grid planetGrid, int nextPoint, IRover rover)
         {
             foreach (var gridObstacle in planetGrid.Obstacles)
             {
-                if (RoverIsMovingHorizontally)
+                if (RoverIsMovingHorizontally(rover))
                 {
                     if (nextPoint == gridObstacle.Position.XCoordinate)
                         return false;
@@ -96,7 +91,7 @@ namespace PlumGuide.PlutoRover.API.Commands
             return true;
         }
 
-        private bool RoverIsMovingHorizontally => _rover.Cardinal.Direction == CardinalDirection.East || 
-                                                  _rover.Cardinal.Direction == CardinalDirection.West;
+        private bool RoverIsMovingHorizontally(IRover rover) => rover.Cardinal.Direction == CardinalDirection.East || 
+                                                                rover.Cardinal.Direction == CardinalDirection.West;
     }
 }
